@@ -1,5 +1,6 @@
 import {FastifyInstance} from 'fastify'
 import { AppDataSource } from '../data-source'
+import {IsNull} from 'typeorm'
 import { Loan } from '../entities/loan'
 import { User } from '../entities/user'
 import { Book } from '../entities/book'
@@ -37,6 +38,32 @@ export function loanRoutes(app:FastifyInstance){
     const livro = await bookRepo.findOneBy({
         id:body.bookId
     })
+
+    // Se o livro não existir, lanço um erro.
+    if(!livro){
+        return reply.code(404).send({
+            error:'Livro não encontrado'
+        })
+    }
+
+    //Achei o livro, bola para a frente
+    //Tenho exemplares do livro para emprestismo?
+    if(livro.quantity <= 0){
+        return reply.status(400).send({
+            error:'Livro indisponivel.'
+        })
+    }
+
+    // Verificar se usuario já tem emprestimo
+    const emprestimoExistente = await loanRepo.findOne({
+        where:{
+            user:{id:usuario.id},
+            book:{id: livro.id},
+            returnDate: IsNull()
+        },
+        relations:['user', 'book']
+    })
+
 
     })
 }

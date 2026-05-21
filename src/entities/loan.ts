@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, ManyToOne, IsNull } from 'typeorm'
 import { User } from './user'
 import { Book } from './book'
 
@@ -23,5 +23,5 @@ export class Loan{
    @ManyToOne(()=> Book, book => book.loans, {onDelete:'CASCADE'})
     book!:Book
     loanDate!:Date
-    returnDate!:Date
+    returnDate: Date | null = null
 }
