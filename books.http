@@ -1,0 +1,28 @@
+###
+GET http://localhost:3333/books
+
+###
+POST http://localhost:3333/books
+Content-Type: application/json
+
+{
+    "title":"Eu sou um idiota",
+    "author":"Antonio A. Alves"
+    
+}
+
+###
+GET http://localhost:3333/books/3
+
+###
+PUT http://localhost:3333/books/update/4
+Content-Type: application/json
+
+{
+    "title":"Eu sou idiota pra caramba",
+    "author":"Antonio Augusto Alves",
+    "quantity":4
+}
+
+###
+DELETE http://localhost:3333/books/remove/4
