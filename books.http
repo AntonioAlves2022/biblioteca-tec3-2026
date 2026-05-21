@@ -6,8 +6,10 @@ POST http://localhost:3333/books
 Content-Type: application/json
 
 {
-    "title":"Eu sou um idiota",
-    "author":"Antonio A. Alves"
+    "title":"O menino maluquinho",
+    "author":"Ziraldo",
+    "quantity": 4
+
     
 }
 

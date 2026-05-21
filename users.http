@@ -1,2 +1,12 @@
 ###
 GET http://localhost:3333/users
+
+###
+POST http://localhost:3333/users
+Content-Type: application/json
+
+{
+    "name":"Antonio",
+    "email":"antonio@duque.g12.br",
+    "password":"senha123"
+}

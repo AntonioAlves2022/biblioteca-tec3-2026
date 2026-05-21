@@ -3,7 +3,7 @@ import Fastify from 'fastify'
 import { AppDataSource } from './data-source'
 import { userRoutes } from './routes/user-routes'
 import { booksRoutes } from './routes/books-routes'
-
+import { loanRoutes } from './routes/loan-routes'
 const app = Fastify({logger:true})
 
 /*
@@ -19,6 +19,7 @@ AppDataSource.initialize().then(()=>{
     //Registro de rotas e plugins:
     app.register(userRoutes)
     app.register(booksRoutes)
+    app.register(loanRoutes)
     app.get('/start',async ()=>{
         return {message: 'API Rest online'}
     })
