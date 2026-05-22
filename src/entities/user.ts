@@ -7,13 +7,13 @@ import {
 } from 'typeorm'
 import { Loan } from './loan';
 
-@Entity()
+@Entity() //CREATE TABLE user(id int primary key auto_increment,name varchar(40));
 export class User{
     
     @PrimaryGeneratedColumn()
     id!:number; //! significa que o valor será definido em runtime
 
-    @Column({type:'text'})
+    @Column({type:'text', length:40})
     name!: string
 
     @Column({type:'text', unique: true, nullable:false})

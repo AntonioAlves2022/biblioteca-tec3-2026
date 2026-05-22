@@ -14,7 +14,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3333/books/3
+GET http://localhost:3333/books/6
 
 ###
 PUT http://localhost:3333/books/update/4

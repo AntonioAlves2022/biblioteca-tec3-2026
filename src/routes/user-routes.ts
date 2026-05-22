@@ -9,20 +9,24 @@ export async function userRoutes(app:FastifyInstance){
     app.post('/users', async (req,reply)=>{
         const {name, email, password} = req.body as {name:string, email:string, password:string}
         const user = repo.create({name, email, password})
-        await repo.save(user)
+        /*
+        INSERT INTO user(name, email, pass)
+        VALUES(?,?,?)
+         */
+        await repo.save(user) // banco.commit
         return reply.code(201).send(user)
     })
 
     //Read all (cRud) 
     app.get('/users', async()=>{
-        return repo.find()
+        return repo.find() //SELECT * FROM user
     })
 
     //Read One (cRud)
     app.get('/users/:id', async(req,reply)=>{
         const {id} = req.params as {id:string}
         const user = await repo.findOneBy({id:Number(id)})
-
+        //SELECT * FROM user WHERE id=1
         if(!user){
             return reply.code(404).send({error:'Not found'})
         }
