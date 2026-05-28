@@ -1,0 +1,14 @@
+###
+GET http://localhost:3333/loans
+
+###
+POST http://localhost:3333/loans
+Content-Type: application/json
+
+{
+    "userId":5,
+    "bookId":6
+}
+
+###
+PATCH http://localhost:3333/loans/1/return
