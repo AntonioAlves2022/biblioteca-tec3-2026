@@ -21,6 +21,9 @@ export class User{
 
     @Column({type:'text'})
     password!: string
+
+    @Column({type:'text', default:'USER'})
+    role!:'ADMIN'|'USER'
     
     @OneToMany(()=> Loan, loan=>loan.book)
     loans!:Loan[]

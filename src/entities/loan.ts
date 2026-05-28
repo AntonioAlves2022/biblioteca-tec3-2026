@@ -22,8 +22,20 @@ export class Loan{
     */
    @ManyToOne(()=> Book, book => book.loans, {onDelete:'CASCADE'})
     book!:Book
+
     @CreateDateColumn()
     loanDate!:Date
+
     @Column({type:'datetime', nullable:true})
     returnDate: Date | null = null
+
+    @Column({type:'datetime'})
+    dueDate!: Date
+
+    @Column({type:'float', default:0})
+    fine!:number
+
+    @Column({default:false})
+    returned!:boolean
+
 }
