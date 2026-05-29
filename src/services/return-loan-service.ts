@@ -23,6 +23,22 @@ export class ReturnLoanService{
         const hoje = new Date() // pega a data atual
         let multa = 0
 
-        if(hoje > emprestimo.dueDate)
+        if(hoje > emprestimo.dueDate){
+            const atraso = hoje.getTime() - emprestimo.dueDate.getTime()
+            const diasAtraso = Math.ceil(atraso/(1000 * 60 * 60 * 24))
+            multa = diasAtraso * 2.50
+
+        }
+
+        emprestimo.returned = true
+        emprestimo.returnDate = hoje
+        emprestimo.fine = multa
+        emprestimo.book.quantity +=1
+
+        //atualiza os livros
+        await bookRepository.save(emprestimo.book)
+        //atualiza o status do emprestimo
+        await loanRepository.save(emprestimo)
+
     }
 }

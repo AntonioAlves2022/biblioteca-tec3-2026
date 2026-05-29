@@ -1,0 +1,6 @@
+hoje = new Date()
+meuAniver = new Date('1981-12-23')
+tempo = hoje.getTime() - meuAniver.getTime()
+diasPassados = Math.ceil(tempo/(1000 * 60 * 60 * 24))
+console.log(diasPassados)
+console.log(Math.ceil(diasPassados/365))
